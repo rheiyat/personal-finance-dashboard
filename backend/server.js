@@ -18,3 +18,9 @@ app.listen(PORT, () => {
 const authRoutes = require('./routes/auth');
 app.use('/auth', authRoutes);
 
+const connectDB = require('./config/db');
+connectDB();
+
+const transactionRoutes = require('./routes/transactions');
+app.use('/transactions', transactionRoutes);
+
