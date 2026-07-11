@@ -24,3 +24,5 @@ connectDB();
 const transactionRoutes = require('./routes/transactions');
 app.use('/transactions', transactionRoutes);
 
+const analyticsRoutes = require('./routes/analytics');
+app.use('/analytics', analyticsRoutes);
