@@ -1,0 +1,8 @@
+"use client";
+
+import AuthForm from "../../components/AuthForm";
+import { login } from "../../lib/api";
+
+export default function LoginPage() {
+  return <AuthForm type="login" onSubmit={login} />;
+}
