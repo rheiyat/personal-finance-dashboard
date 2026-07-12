@@ -2,6 +2,7 @@
 import { useState } from "react";
 
 export default function AuthForm({ type, onSubmit }) {
+  const [name, setName] = useState("");        // NEW
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
@@ -10,7 +11,13 @@ export default function AuthForm({ type, onSubmit }) {
     e.preventDefault();
     setError("");
 
-    const result = await onSubmit(email, password);
+    let result;
+
+    if (type === "register") {
+      result = await onSubmit(name, email, password);   // pass name
+    } else {
+      result = await onSubmit(email, password);         // login unchanged
+    }
 
     if (result.token) {
       localStorage.setItem("token", result.token);
@@ -32,10 +39,20 @@ export default function AuthForm({ type, onSubmit }) {
         )}
 
         <form onSubmit={handleSubmit} className="space-y-4">
+
+          {type === "register" && (
+            <input
+              type="text"
+              placeholder="Full Name"
+              className="w-full p-3 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 placeholder-slate-700 text-slate-700" value={name}
+              onChange={(e) => setName(e.target.value)}
+            />
+          )}
+
           <input
             type="email"
             placeholder="Email"
-            className="w-full p-3 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500"
+            className="w-full p-3 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 placeholder-slate-700 text-slate-700"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
           />
@@ -43,7 +60,7 @@ export default function AuthForm({ type, onSubmit }) {
           <input
             type="password"
             placeholder="Password"
-            className="w-full p-3 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500"
+            className="w-full p-3 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 placeholder-slate-700 text-slate-700"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
           />

@@ -1,6 +1,6 @@
 "use client";
 
-import AuthForm from "../../components/AuthForm";
+import AuthForm from "../components/AuthForm";
 import { register } from "../../lib/api";
 
 export default function RegisterPage() {

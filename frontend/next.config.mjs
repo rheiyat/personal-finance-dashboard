@@ -1,6 +1,8 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  /* config options here */
+  turbopack: {
+    root: "/Users/rheiyat/personal-finance-dashboard/frontend",
+  },
 };
 
 export default nextConfig;
