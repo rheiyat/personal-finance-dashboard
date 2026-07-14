@@ -18,7 +18,11 @@ export default function Sidebar() {
         </Link>
 
         <Link href="/budgets" className="block text-slate-300 hover:text-indigo-400 transition">
-          Budgets & Goals
+          Budgets
+        </Link>
+
+        <Link href="/goals" className="block text-slate-300 hover:text-indigo-400 transition">
+          Goals
         </Link>
       </nav>
     </aside>
